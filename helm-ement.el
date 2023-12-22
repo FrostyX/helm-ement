@@ -1,4 +1,40 @@
+;;; helm-ement.el --- Helm interace for Ement   -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2023  Jakub Kadlčík
+
+;; Author: Jakub Kadlčík <frostyx@email.cz>
+;; URL: https://github.com/FrostyX/helm-ement
+;; Version: 1.0
+;; Package-Requires: ((emacs "26.3") (ement "0.14"))
+;; Keywords: helm, ement
+
+;;; License:
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+;;; Commentary:
+
+;; Helm interface for the Ement matrix client
+
+
+;;; Code:
+
+;;;; Commands
+
+;;;###autoload
 (defun helm-ement-directs ()
+  "Show all Ement direct chat rooms"
   (interactive)
   (helm :sources
         (helm-build-sync-source "Ement directs"
@@ -7,7 +43,9 @@
           (lambda (direct)
             (ement-view-room direct (helm-ement--session))))))
 
+;;;###autoload
 (defun helm-ement-spaces ()
+  "Show all Ement spaces"
   (interactive)
   (helm :sources
         (helm-build-sync-source "Ement spaces"
@@ -16,7 +54,9 @@
           (lambda (space)
             (ement-view-space space (helm-ement--session))))))
 
+;;;###autoload
 (defun helm-ement-rooms ()
+  "Show all Ement rooms, excluding direct chat rooms"
   (interactive)
   (helm :sources
         (helm-build-sync-source "Ement rooms"
@@ -25,12 +65,18 @@
           (lambda (room)
             (ement-view-room room (helm-ement--session))))))
 
+;;;###autoload
 (defun helm-ement-buffers ()
+  "Show all Ement buffers"
   (interactive)
   (helm :sources
         (helm-make-source "Ement buffers" 'helm-source-buffers
           :buffer-list
           #'helm-ement--buffers)))
+
+;;;; Functions
+
+;;;;; Private
 
 (defun helm-ement--session ()
   (if (length> ement-sessions 0)
@@ -65,3 +111,9 @@
                                     ement-room-mode
                                     ement-directory-mode))))
            (buffer-list))))
+
+;;;; Footer
+
+(provide 'helm-ement)
+
+;;; helm-ement.el ends here
