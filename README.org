@@ -1,0 +1,26 @@
+#+TITLE: Helm Ement
+
+This package provides [[https://emacs-helm.github.io/helm/][Helm]] interface for the [[https://github.com/alphapapa/ement.el][Ement]] matrix client.
+
+** Installation
+
+There is no MELPA package yet. Please install from upstream using
+Quelpa (or your preferred package manager).
+
+#+BEGIN_SRC emacs-lisp
+(use-package helm-ement
+  :ensure t
+  :quelpa (helm-ement
+           :fetcher github
+           :repo "FrostyX/helm-ement"
+           :branch "main"))
+#+END_SRC
+
+** Usage
+
+The following commands are available:
+
+- ~M-x helm-ement-directs~
+- ~M-x helm-ement-rooms~
+- ~M-x helm-ement-spaces~
+- ~M-x helm-ement-buffers~
