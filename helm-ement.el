@@ -37,7 +37,7 @@
   "Show all Ement direct chat rooms"
   (interactive)
   (helm :sources
-        (helm-build-sync-source "Ement directs"
+        (helm-make-source "Ement directs" 'helm-source-sync
           :candidates (helm-ement--directs)
           :action
           (lambda (direct)
@@ -48,7 +48,7 @@
   "Show all Ement spaces"
   (interactive)
   (helm :sources
-        (helm-build-sync-source "Ement spaces"
+        (helm-make-source "Ement spaces" 'helm-source-sync
           :candidates (helm-ement--spaces)
           :action
           (lambda (space)
@@ -59,7 +59,7 @@
   "Show all Ement rooms, excluding direct chat rooms"
   (interactive)
   (helm :sources
-        (helm-build-sync-source "Ement rooms"
+        (helm-make-source "Ement rooms" 'helm-source-sync
           :candidates (helm-ement--rooms)
           :action
           (lambda (room)
