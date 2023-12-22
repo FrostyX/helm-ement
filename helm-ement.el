@@ -107,9 +107,9 @@
           (cl-remove-if-not
            (lambda (buf)
              (with-current-buffer buf
-               (member major-mode '(ement-room-list-mode
-                                    ement-room-mode
-                                    ement-directory-mode))))
+               (derived-mode-p 'ement-room-list-mode
+                               'ement-room-mode
+                               'ement-directory-mode)))
            (buffer-list))))
 
 ;;;; Footer
