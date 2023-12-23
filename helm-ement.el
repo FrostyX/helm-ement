@@ -34,7 +34,7 @@
 
 ;;;###autoload
 (defun helm-ement ()
-  "Show all Ement spaces, rooms, and direct chat rooms"
+  "Show all Ement spaces, rooms, and direct chat rooms."
   (interactive)
   (helm :sources
         (helm-make-source "Ement" 'helm-source-sync
@@ -46,7 +46,7 @@
 
 ;;;###autoload
 (defun helm-ement-directs ()
-  "Show all Ement direct chat rooms"
+  "Show all Ement direct chat rooms."
   (interactive)
   (helm :sources
         (helm-make-source "Ement directs" 'helm-source-sync
@@ -55,7 +55,7 @@
 
 ;;;###autoload
 (defun helm-ement-spaces ()
-  "Show all Ement spaces"
+  "Show all Ement spaces."
   (interactive)
   (helm :sources
         (helm-make-source "Ement spaces" 'helm-source-sync
@@ -64,7 +64,7 @@
 
 ;;;###autoload
 (defun helm-ement-rooms ()
-  "Show all Ement rooms, excluding direct chat rooms"
+  "Show all Ement rooms, excluding direct chat rooms."
   (interactive)
   (helm :sources
         (helm-make-source "Ement rooms" 'helm-source-sync
@@ -73,7 +73,7 @@
 
 ;;;###autoload
 (defun helm-ement-buffers ()
-  "Show all Ement buffers"
+  "Show all Ement buffers."
   (interactive)
   (helm :sources
         (helm-make-source "Ement buffers" 'helm-source-buffers
