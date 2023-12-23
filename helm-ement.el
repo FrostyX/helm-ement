@@ -27,8 +27,18 @@
 
 ;; Helm interface for the Ement matrix client
 
-
 ;;; Code:
+
+;;;; Requirements
+
+(require 'eieio)
+(require 'helm-core)
+(require 'ement-directory)
+
+;;;; Variables
+
+;; From other packages
+(defvar ement-sessions)
 
 ;;;; Commands
 
@@ -85,7 +95,7 @@
 
 (defun helm-ement--session ()
   (if (length> ement-sessions 0)
-      (cdr (first ement-sessions))
+      (cdr (car ement-sessions))
     (error "Ement not running. Start it with `M-x ement-connect'")))
 
 (defun helm-ement--everything ()
