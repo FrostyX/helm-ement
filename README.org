@@ -2,6 +2,8 @@
 
 This package provides [[https://emacs-helm.github.io/helm/][Helm]] interface for the [[https://github.com/alphapapa/ement.el][Ement]] matrix client.
 
+[[images/helm-ement.png]]
+
 ** Installation
 
 There is no MELPA package yet. Please install from upstream using
