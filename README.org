@@ -20,6 +20,7 @@ Quelpa (or your preferred package manager).
 
 The following commands are available:
 
+- ~M-x helm-ement~
 - ~M-x helm-ement-directs~
 - ~M-x helm-ement-rooms~
 - ~M-x helm-ement-spaces~

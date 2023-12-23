@@ -33,6 +33,22 @@
 ;;;; Commands
 
 ;;;###autoload
+(defun helm-ement ()
+  "Show all Ement spaces, rooms, and direct chat rooms"
+  (interactive)
+  (helm :sources
+        (helm-make-source "Ement" 'helm-source-sync
+          :candidates
+          (lambda ()
+            (mapcar (lambda (item) (cons (slot-value item 'display-name) item))
+                    (helm-ement--everything)))
+          :action
+          (lambda (item)
+            (if (ement--space-p item)
+                (ement-view-space item (helm-ement--session))
+            (ement-view-room item (helm-ement--session)))))))
+
+;;;###autoload
 (defun helm-ement-directs ()
   "Show all Ement direct chat rooms"
   (interactive)
