@@ -49,8 +49,9 @@
   (helm :sources
         (helm-make-source "Ement" 'helm-source-sync
           :candidates
-          (mapcar (lambda (item) (cons (slot-value item 'display-name) item))
-                  (helm-ement--everything))
+          (cl-loop for item in (helm-ement--everything)
+                   when (slot-value item 'display-name)
+                   collect (cons (helm-ement--title item) item))
           :action #'helm-ement--view)))
 
 ;;;###autoload
@@ -104,18 +105,18 @@
   (cl-loop for item in (helm-ement--everything)
            when (ement--room-direct-p item (helm-ement--session))
            when (slot-value item 'display-name)
-           collect (cons (slot-value item 'display-name) item)))
+           collect (cons (helm-ement--title item) item)))
 
 (defun helm-ement--spaces ()
   (cl-loop for item in (helm-ement--everything)
            when (ement--space-p item)
-           collect (cons (slot-value item 'display-name) item)))
+           collect (cons (helm-ement--title item) item)))
 
 (defun helm-ement--rooms ()
   (cl-loop for item in (helm-ement--everything)
            when (not (ement--room-direct-p item (helm-ement--session)))
            when (not (ement--space-p item))
-           collect (cons (slot-value item 'display-name) item)))
+           collect (cons (helm-ement--title item) item)))
 
 (defun helm-ement--buffers ()
   (mapcar #'buffer-name
@@ -126,6 +127,13 @@
                                'ement-room-mode
                                'ement-directory-mode)))
            (buffer-list))))
+
+(defun helm-ement--title (item)
+  (string-join
+   (list (slot-value item 'display-name)
+         (when (ement--room-unread-p item (helm-ement--session))
+           (propertize "(unread)" 'face 'font-lock-warning-face)))
+   " "))
 
 (defun helm-ement--view (item)
   (if (ement--space-p item)
