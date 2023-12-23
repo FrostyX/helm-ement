@@ -89,6 +89,7 @@
 (defun helm-ement--directs ()
   (cl-loop for item in (helm-ement--everything)
            when (ement--room-direct-p item (helm-ement--session))
+           when (slot-value item 'display-name)
            collect (cons (slot-value item 'display-name) item)))
 
 (defun helm-ement--spaces ()
