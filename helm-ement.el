@@ -42,11 +42,7 @@
           (lambda ()
             (mapcar (lambda (item) (cons (slot-value item 'display-name) item))
                     (helm-ement--everything)))
-          :action
-          (lambda (item)
-            (if (ement--space-p item)
-                (ement-view-space item (helm-ement--session))
-            (ement-view-room item (helm-ement--session)))))))
+          :action #'helm-ement--view)))
 
 ;;;###autoload
 (defun helm-ement-directs ()
@@ -55,9 +51,7 @@
   (helm :sources
         (helm-make-source "Ement directs" 'helm-source-sync
           :candidates (helm-ement--directs)
-          :action
-          (lambda (direct)
-            (ement-view-room direct (helm-ement--session))))))
+          :action #'helm-ement--view)))
 
 ;;;###autoload
 (defun helm-ement-spaces ()
@@ -66,9 +60,7 @@
   (helm :sources
         (helm-make-source "Ement spaces" 'helm-source-sync
           :candidates (helm-ement--spaces)
-          :action
-          (lambda (space)
-            (ement-view-space space (helm-ement--session))))))
+          :action #'helm-ement--view)))
 
 ;;;###autoload
 (defun helm-ement-rooms ()
@@ -77,9 +69,7 @@
   (helm :sources
         (helm-make-source "Ement rooms" 'helm-source-sync
           :candidates (helm-ement--rooms)
-          :action
-          (lambda (room)
-            (ement-view-room room (helm-ement--session))))))
+          :action #'helm-ement--view)))
 
 ;;;###autoload
 (defun helm-ement-buffers ()
@@ -87,8 +77,7 @@
   (interactive)
   (helm :sources
         (helm-make-source "Ement buffers" 'helm-source-buffers
-          :buffer-list
-          #'helm-ement--buffers)))
+          :buffer-list #'helm-ement--buffers)))
 
 ;;;; Functions
 
@@ -128,6 +117,11 @@
                                'ement-room-mode
                                'ement-directory-mode)))
            (buffer-list))))
+
+(defun helm-ement--view (item)
+  (if (ement--space-p item)
+      (ement-view-space item (helm-ement--session))
+    (ement-view-room item (helm-ement--session))))
 
 ;;;; Footer
 
