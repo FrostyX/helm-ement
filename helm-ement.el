@@ -49,9 +49,8 @@
   (helm :sources
         (helm-make-source "Ement" 'helm-source-sync
           :candidates
-          (lambda ()
-            (mapcar (lambda (item) (cons (slot-value item 'display-name) item))
-                    (helm-ement--everything)))
+          (mapcar (lambda (item) (cons (slot-value item 'display-name) item))
+                  (helm-ement--everything))
           :action #'helm-ement--view)))
 
 ;;;###autoload
