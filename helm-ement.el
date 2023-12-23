@@ -5,7 +5,7 @@
 ;; Author: Jakub Kadlčík <frostyx@email.cz>
 ;; URL: https://github.com/FrostyX/helm-ement
 ;; Version: 1.0
-;; Package-Requires: ((emacs "26.3") (ement "0.13"))
+;; Package-Requires: ((emacs "28.1") (ement "0.13"))
 ;; Keywords: helm, ement
 
 ;;; License:
